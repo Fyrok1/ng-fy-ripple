@@ -9,7 +9,7 @@ Hey.
 It's an Angular 8 module for Material Admin Panel Bar Theme.
 Have Funn.
 
-[Click for demo](https://Fyrok1.github.io/ng-fy-sidebar/)
+[Click for demo](https://fyrok1.github.io/NgFySidebar/)
 
   
 ## Install
