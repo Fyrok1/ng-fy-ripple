@@ -1,0 +1,65 @@
+<div class="ng-fy-topbar" [ngClass]="{'wide': windowWidth <= 1000 || data.sidebarClosed}">
+  <div class="ng-fy-topbar-item left" *ngIf="data.topbarDataLeft != undefined && data.topbarDataLeft.length > 0 && windowWidth > 1000">
+    <div class="item unselectable" *ngFor="let item of data.topbarDataLeft" (clickOutside)="topbarOutclick(item)">
+      <div class="content" ngFyRipple (click)="topbarClick(item)">
+        <div class="icon unselectable" *ngIf="item.icon != undefined" [innerHtml]="item.icon"></div>
+        <p class="title unselectable" *ngIf="item.title.length > 0" [style.paddingLeft]="item.icon != undefined ? '7px' : '0px'" [style.paddingRight]="item.children != undefined && item.children.length > 0 ? '7px' : '0px'">{{item.title}}</p>
+        <div class="icon child unselectable" [ngClass]="{'open': item.open}" *ngIf="item.children != undefined && item.children.length > 0">
+          <i class='material-icons'>arrow_left</i>
+        </div>
+      </div>
+      <div class="children" [ngClass]="{'open': item.open}" *ngIf="item.children != undefined && item.children.length > 0">
+        <div class="item" (click)="topbarChildClick(item,childItem)" *ngFor="let childItem of item.children" ngFyRipple>
+          <div class="icon" *ngIf="childItem.icon != undefined" [innerHtml]="childItem.icon"></div>
+          <p [style.width]="childItem.icon != undefined ? 'calc(100% - 20px)' : '100%'" [style.paddingLeft]="childItem.icon != undefined ? '7px' : '0px'" *ngIf="childItem.title.length > 0">{{childItem.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ng-fy-topbar-item right" *ngIf="data.topbarDataRight != undefined && data.topbarDataRight.length > 0 && windowWidth > 1000">
+    <div class="item unselectable" *ngFor="let item of data.topbarDataRight; let i = index" (clickOutside)="topbarOutclick(item)">
+      <div class="content" ngFyRipple (click)="topbarClick(item)">
+        <div class="icon unselectable" *ngIf="item.icon != undefined" [innerHtml]="item.icon"></div>
+        <p class="title unselectable" *ngIf="item.title.length > 0" [style.paddingLeft]="item.icon != undefined ? '7px' : '0px'" [style.paddingRight]="item.children != undefined && item.children.length > 0 ? '7px' : '0px'">{{item.title}}</p>
+        <div class="icon child unselectable" [ngClass]="{'open': item.open}" *ngIf="item.children != undefined && item.children.length > 0">
+          <i class='material-icons'>arrow_left</i>
+        </div>
+      </div>
+      <div class="children" [ngClass]="{'open': item.open}" *ngIf="item.children != undefined && item.children.length > 0">
+        <div class="item" (click)="topbarChildClick(item,childItem)" *ngFor="let childItem of item.children" ngFyRipple>
+          <div class="icon" *ngIf="childItem.icon != undefined" [innerHtml]="childItem.icon"></div>
+          <p [style.width]="childItem.icon != undefined ? 'calc(100% - 20px)' : '100%'" [style.paddingLeft]="childItem.icon != undefined ? '7px' : '0px'" *ngIf="childItem.title.length > 0">{{childItem.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-topbar" *ngIf="windowWidth <= 1000 && ((data.topbarDataRight != undefined && data.topbarDataRight.length > 0) || (data.topbarDataLeft != undefined && data.topbarDataLeft.length > 0))">
+    <div class="item left" (click)="toggleMenu()" ngFyRipple>
+      <i class="material-icons">menu</i>
+    </div>
+    <div class="item center" *ngIf="data.mobileLogo != undefined || data.logo != null">
+      <img [attr.src]="data.logo" *ngIf="data.mobileLogo == undefined" alt="image">      
+      <img [attr.src]="data.mobileLogo" *ngIf="data.mobileLogo != undefined" alt="image">      
+    </div>
+    <div class="item right" *ngIf="data.mobileRightSidebar != undefined" (click)="toggleRightMenu()" ngFyRipple>
+      <i class="material-icons">person</i>
+    </div>
+  </div>
+</div>
+<div class="ng-fy-sidebar" [ngClass]="{'closed': data.sidebarClosed}">
+  <div class="ng-fy-logobar">
+    <img *ngIf="data.logo != undefined && data.logo != null" [attr.src]="data.logo" alt="image">
+  </div>
+  <div class="ng-fy-sidebar-content">
+    <ng-fy-sidebar-item [sidebarId]="1" [data]="data.sidebarData"></ng-fy-sidebar-item>
+  </div>
+</div>
+<div class="ng-fy-sidebar right" *ngIf="windowWidth <= 1000 && data.mobileRightSidebar != undefined" [ngClass]="{'closed': data.mobileRightSidebarClosed == undefined || data.mobileRightSidebarClosed}">
+  <div class="ng-fy-sidebar-content">
+    <ng-fy-sidebar-item [sidebarId]="2" [data]="data.mobileRightSidebar"></ng-fy-sidebar-item>
+  </div>
+</div>
+<div class="mobileSidebarBack" *ngIf="windowWidth <= 1000" (click)="toggleMenuBack()" [ngClass]="{'open': (data.sidebarClosed != undefined && !data.sidebarClosed) || (data.mobileRightSidebarClosed != undefined && !data.mobileRightSidebarClosed)}"></div>
+<div class="main-content" [ngClass]="{'wide': windowWidth <= 1000 || data.sidebarClosed}">
+  <ng-content></ng-content>
+</div>

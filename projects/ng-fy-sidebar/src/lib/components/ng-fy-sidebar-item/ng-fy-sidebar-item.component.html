@@ -1,0 +1,12 @@
+<div class="item" *ngFor="let item of data;let i = index">
+  <div class="content unselectable" [style.padding-left]="(15+((level > 4 ? 4 : level)*20))+'px'" (click)="itemClick(item,i)" ngFyRipple>
+    <div class="icon" *ngIf="item.icon != undefined" [innerHtml]="item.icon"></div>
+    <p [style.width]="'calc(100% - '+((item.icon != undefined ? 30 : 0)+(item.children != undefined && item.children.length > 0 ? 30 : 0))+'px)'">{{item.title}}</p>
+    <div class="icon child unselectable" *ngIf="item.children != undefined && item.children.length > 0">
+      <i [ngClass]="{'open': item.open}" class="material-icons unselectable">arrow_left</i>
+    </div>
+  </div>
+  <div #childs class="childs unselectable" *ngIf="item.children != undefined && item.children.length > 0" [ngClass]="{'open': item.open}" [style.max-height]="item.open ? item.childHeigth+'px' : '0px'">
+    <ng-fy-sidebar-item [sidebarId]="sidebarId" [level]="level+1" [data]="item.children"></ng-fy-sidebar-item>
+  </div>
+</div>
