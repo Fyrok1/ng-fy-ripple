@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgFySidebarItemComponent } from './ng-fy-sidebar-item.component';
+import { NgFyRippleComponent } from './ng-fy-ripple.component';
 
-describe('NgFySidebarItemComponent', () => {
-  let component: NgFySidebarItemComponent;
-  let fixture: ComponentFixture<NgFySidebarItemComponent>;
+describe('NgFyRippleComponent', () => {
+  let component: NgFyRippleComponent;
+  let fixture: ComponentFixture<NgFyRippleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgFySidebarItemComponent ]
+      declarations: [ NgFyRippleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgFySidebarItemComponent);
+    fixture = TestBed.createComponent(NgFyRippleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

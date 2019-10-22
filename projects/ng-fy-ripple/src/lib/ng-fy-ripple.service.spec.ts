@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NgFySidebarService } from './ng-fy-sidebar.service';
+import { NgFyRippleService } from './ng-fy-ripple.service';
 
-describe('NgFySidebarService', () => {
+describe('NgFyRippleService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NgFySidebarService = TestBed.get(NgFySidebarService);
+    const service: NgFyRippleService = TestBed.get(NgFyRippleService);
     expect(service).toBeTruthy();
   });
 });

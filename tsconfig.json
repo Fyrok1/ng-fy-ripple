@@ -30,6 +30,12 @@
       ],
       "ng-fy-sidebar/*": [
         "dist/ng-fy-sidebar/*"
+      ],
+      "ng-fy-ripple": [
+        "dist/ng-fy-ripple"
+      ],
+      "ng-fy-ripple/*": [
+        "dist/ng-fy-ripple/*"
       ]
     }
   }

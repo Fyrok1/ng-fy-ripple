@@ -188,6 +188,41 @@
           }
         }
       }
+    },
+    "ngFyRipple": {
+      "projectType": "library",
+      "root": "projects/ng-fy-ripple",
+      "sourceRoot": "projects/ng-fy-ripple/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-fy-ripple/tsconfig.lib.json",
+            "project": "projects/ng-fy-ripple/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-fy-ripple/src/test.ts",
+            "tsConfig": "projects/ng-fy-ripple/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-fy-ripple/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-fy-ripple/tsconfig.lib.json",
+              "projects/ng-fy-ripple/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ngFyTabsLib"
 }

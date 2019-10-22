@@ -1,5 +1,5 @@
 {
-  "name": "ng-fy-sidebar",
+  "name": "ng-fy-ripple",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -11,7 +11,7 @@
     "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
-  "author":{
+  "author": {
     "name": "fyrok1",
     "email": "tahsincesur1@gmail.com"
   },
@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "hammerjs": "^2.0.8",
+    "ng-fy-sidebar": "0.0.10",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
