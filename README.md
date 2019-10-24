@@ -16,19 +16,19 @@ NgModule({
 imports: [
 	...
 	NgFyRippleModule
-	...
+	..
 ]
 ...
 })
 ```
 ## Usage
 ```html
-<any-element  ngFyRipple></any-element>
+<any-element ngFyRipple></any-element>
 ```
 with paramater
   
 ```html
-<any-element  [ngFyRipple]="true|false"></any-element>
+<any-element [ngFyRipple]="true|false"></any-element>
 ```
 ### Inputs
 | Name | Type | Default | Description |

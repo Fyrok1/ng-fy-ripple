@@ -10,7 +10,7 @@ export class RippleDirective implements OnInit {
 
   constructor(
     private el?: ElementRef
-  ) {
+  ) {    
     if (document.getElementById("ngFyRippleStyles") == null) {
       var style = document.createElement('style');
       style.id = "ngFyRippleStyles";
@@ -31,27 +31,38 @@ export class RippleDirective implements OnInit {
         position: absolute;
         pointer-events: none;
         border-radius: 50%;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.14);
         z-index: 10;
-        animation: ngFyRipple 0.75s ease-out forwards;
+        animation: ngFyRipple 0.65s ease-out forwards;
+      }
+
+      *[ng-reflect-ng-fy-ripple] .ripple-div.ripple-remove,
+      *[ngfyripple] .ripple-div.ripple-remove {
+        animation: ngFyRippleRemove 0.3s ease-in forwards;
       }
       
       @keyframes ngFyRipple {
         0% {
           opacity: 1;
-          transform: translate(-50%, -50%) scale(0.1);
+          transform: translate(-50%, -50%) scale(0.05);
         }
-        60% {
-          opacity: 0.5;
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
         }
-        95% {
+      }
+
+      @keyframes ngFyRippleRemove {
+        0% {
+          opacity: 1;
           transform: translate(-50%, -50%) scale(1);
         }
         100% {
           opacity: 0;
           transform: translate(-50%, -50%) scale(1);
         }
-      }`;
+      }
+      `;
       style.innerHTML = keyFrames.replace(/A_DYNAMIC_VALUE/g, "180deg");
       document.getElementsByTagName('head')[0].appendChild(style);
     }
@@ -61,7 +72,7 @@ export class RippleDirective implements OnInit {
 
   }
 
-  @HostListener('click', ['$event']) onClick(event) {    
+  @HostListener('mousedown', ['$event']) mousedown(event) {    
     if (this.ngFyRipple || (this.ngFyRipple != undefined && this.ngFyRipple.toString() == "")) {
       let child = document.createElement('div'),
       weight = this.el.nativeElement.offsetHeight > this.el.nativeElement.offsetWidth ? this.el.nativeElement.offsetHeight : this.el.nativeElement.offsetWidth,
@@ -75,8 +86,34 @@ export class RippleDirective implements OnInit {
       child.classList.add('ripple-div');
       this.el.nativeElement.appendChild(child);
       setTimeout(() => {
-        this.el.nativeElement.removeChild(child);
-      }, 1000);
+        child.classList.add("ripple-complated");
+      }, 550);
+    }
+  }
+
+  @HostListener('mouseup', ['$event']) mouseup(event) { 
+    for (let i = 0; i < this.el.nativeElement.children.length; i++) {
+      let element = this.el.nativeElement.children[i];
+      if (element.className.search("ripple-div") != -1 && element.className.search("ripple-remove") == -1) {
+        if (element.className.search("ripple-complated") != -1) {
+          element.classList.add("ripple-remove");
+          setTimeout(() => {
+            element.parentNode.removeChild(element);
+          }, 350);
+        }else{
+          let checkInter = setInterval(()=>{
+            if (element.className.search("ripple-complated") != -1) {
+              element.classList.add("ripple-remove");
+              setTimeout(() => {
+                if (element != null && element.parentNode != null) {
+                  element.parentNode.removeChild(element);
+                }
+              }, 350);
+              clearInterval(checkInter);
+            }
+          },50);
+        }
+      }
     }
   }
 

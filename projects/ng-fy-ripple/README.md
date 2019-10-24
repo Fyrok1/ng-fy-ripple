@@ -1,24 +1,38 @@
-# NgFyRipple
+# ng-fy-sidebar
+Hey.
+It's an Angular 8 module for Ripple Effect on click
+Have Funn.  
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+[Click for demo](https://fyrok1.github.io/ng-fy-ripple/)
 
-## Code scaffolding
+## Install
+`npm install ng-fy-ripple`
+## Usage
+`import { NgFyRippleModule } from 'ng-fy-ripple';`
+add to module imports
+```javascript
+NgModule({
+...
+imports: [
+	...
+	NgFyRippleModule
+	..
+]
+...
+})
+```
+## Usage
+```html
+<any-element ngFyRipple></any-element>
+```
+with paramater
+  
+```html
+<any-element [ngFyRipple]="true|false"></any-element>
+```
+### Inputs
+| Name | Type | Default | Description |
+|--|--|--|--|
+| ngFyRipple | boolean | true | Is active |
 
-Run `ng generate component component-name --project ngFyRipple` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngFyRipple`.
-> Note: Don't forget to add `--project ngFyRipple` or else it will be added to the default project in your `angular.json` file. 
-
-## Build
-
-Run `ng build ngFyRipple` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build ngFyRipple`, go to the dist folder `cd dist/ng-fy-ripple` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngFyRipple` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[For Feedbacks or Problems](mailto:tahsincesur1@gmail.com)
