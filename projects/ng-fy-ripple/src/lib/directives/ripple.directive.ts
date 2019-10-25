@@ -92,6 +92,13 @@ export class RippleDirective implements OnInit {
   }
 
   @HostListener('mouseup', ['$event']) mouseup(event) { 
+    this.out();
+  }
+  @HostListener('mouseleave', ['$event']) mouseleave(event) { 
+    this.out();
+  }
+
+  out(){
     for (let i = 0; i < this.el.nativeElement.children.length; i++) {
       let element = this.el.nativeElement.children[i];
       if (element.className.search("ripple-div") != -1 && element.className.search("ripple-remove") == -1) {
